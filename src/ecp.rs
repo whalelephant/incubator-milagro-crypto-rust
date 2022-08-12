@@ -28,7 +28,7 @@ use std::str::SplitWhitespace;
 pub use super::rom::{AESKEY, CURVETYPE, CURVE_PAIRING_TYPE, HASH_TYPE, SEXTIC_TWIST, SIGN_OF_X};
 pub use crate::types::CurveType;
 
-#[derive(Clone)]
+#[derive(Copy, Clone)]
 pub struct ECP {
     x: FP,
     y: FP,
@@ -1286,7 +1286,6 @@ impl ECP {
         let P = self.mul(&c);
         *self = P.clone();
     }
-
 
     /// Map It
     ///

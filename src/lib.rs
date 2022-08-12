@@ -16,7 +16,9 @@ pub mod gcm;
 pub mod hash256;
 pub mod hash384;
 pub mod hash512;
+#[cfg(not(feature = "onchain"))]
 pub mod nhs;
+#[cfg(not(feature = "onchain"))]
 pub mod rand;
 pub mod sha3;
 pub mod types;
@@ -520,6 +522,27 @@ pub mod bn254 {
     pub mod fp2;
     pub mod fp4;
     pub mod mpin;
+    pub mod pair;
+}
+
+#[cfg(feature = "onchain")]
+#[path = "./"]
+pub mod bn254 {
+    #[cfg(target_pointer_width = "32")]
+    #[path = "roms/rom_bn254_32.rs"]
+    pub mod rom;
+    #[cfg(target_pointer_width = "64")]
+    #[path = "roms/rom_bn254_64.rs"]
+    pub mod rom;
+
+    pub mod big;
+    pub mod dbig;
+    pub mod ecp;
+    pub mod ecp2;
+    pub mod fp;
+    pub mod fp12;
+    pub mod fp2;
+    pub mod fp4;
     pub mod pair;
 }
 

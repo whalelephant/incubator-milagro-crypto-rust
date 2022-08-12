@@ -33,7 +33,7 @@ pub const SPARSER: usize = 2;
 pub const SPARSE: usize = 3;
 pub const DENSE: usize = 4;
 
-#[derive(Clone)]
+#[derive(Copy, Clone)]
 pub struct FP12 {
     a: FP4,
     b: FP4,

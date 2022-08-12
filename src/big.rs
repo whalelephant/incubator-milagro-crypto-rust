@@ -19,6 +19,8 @@ under the License.
 
 use super::dbig::DBig;
 use crate::arch::{self, Chunk, DChunk};
+
+#[cfg(not(feature = "onchain"))]
 use crate::rand::RAND;
 
 use std::cmp::Ordering;
@@ -35,7 +37,7 @@ pub const HMASK: Chunk = (1 << HBITS) - 1;
 pub const NEXCESS: isize = 1 << (arch::CHUNK - BASEBITS - 1);
 pub const BIGBITS: usize = MODBYTES * 8;
 
-#[derive(Clone)]
+#[derive(Copy, Clone)]
 pub struct Big {
     pub w: [Chunk; NLEN],
 }
@@ -332,7 +334,7 @@ impl Big {
     /// To String
     ///
     /// Converts a `Big` to a hex string.
-    pub fn to_string(&self) -> String {
+    pub fn to_hex(&self) -> String {
         let mut s = String::new();
         let mut len = self.nbits();
 
@@ -359,7 +361,7 @@ impl Big {
     ///
     /// Converts to `Big` from hex string.
     #[inline(always)]
-    pub fn from_string(val: String) -> Big {
+    pub fn from_hex(val: String) -> Big {
         let mut res = Big::new();
         let len = val.len();
         let op = &val[0..1];
@@ -794,6 +796,7 @@ impl Big {
     /// Random
     ///
     /// Get 8*MODBYTES size random number
+    #[cfg(not(feature = "onchain"))]
     #[inline(always)]
     pub fn random(rng: &mut RAND) -> Big {
         let mut m = Big::new();
@@ -820,6 +823,7 @@ impl Big {
     /// Random Number
     ///
     /// Create random Big in portable way, one bit at a time
+    #[cfg(not(feature = "onchain"))]
     #[inline(always)]
     pub fn randomnum(q: &Big, rng: &mut RAND) -> Big {
         let mut d = DBig::new();

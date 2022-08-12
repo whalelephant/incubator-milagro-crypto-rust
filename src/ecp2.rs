@@ -31,7 +31,7 @@ use std::str::SplitWhitespace;
 ///
 /// A projective elliptic curve point defined over Fp2.
 /// (X, Y, Z)
-#[derive(Clone)]
+#[derive(Copy, Clone)]
 pub struct ECP2 {
     x: FP2,
     y: FP2,

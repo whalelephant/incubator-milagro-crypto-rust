@@ -26,7 +26,7 @@ use super::rom;
 use crate::arch::{self, Chunk};
 use crate::types::ModType;
 
-#[derive(Clone)]
+#[derive(Copy, Clone)]
 pub struct FP {
     pub x: Big,
     pub xes: i32,
@@ -126,7 +126,7 @@ impl FP {
         let xes = i32::from_str(iter.next().unwrap()).unwrap();
         let x = iter.next().unwrap();
         FP {
-            x: Big::from_string(x.to_string()),
+            x: Big::from_hex(x.to_string()),
             xes,
         }
     }

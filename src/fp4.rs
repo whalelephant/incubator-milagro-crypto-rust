@@ -23,7 +23,7 @@ use super::big::Big;
 use super::fp::FP;
 use super::fp2::FP2;
 
-#[derive(Clone)]
+#[derive(Copy, Clone)]
 pub struct FP4 {
     a: FP2,
     b: FP2,

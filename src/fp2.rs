@@ -26,7 +26,7 @@ use super::fp;
 use super::fp::FP;
 use super::rom;
 
-#[derive(Clone)]
+#[derive(Copy, Clone)]
 pub struct FP2 {
     a: FP,
     b: FP,
